@@ -3,12 +3,14 @@ package com.example.android.justjava;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 2;
+    CheckBox whrippedBox = (CheckBox) findViewById(R.id.whrippedBox);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
