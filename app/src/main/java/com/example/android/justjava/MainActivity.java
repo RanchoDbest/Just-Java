@@ -10,21 +10,26 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 2;
-    CheckBox whrippedBox = (CheckBox) findViewById(R.id.whrippedBox);
+    CheckBox whrippedBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        whrippedBox = (CheckBox) findViewById(R.id.whrippedBox);
 
     }
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        boolean whrippedCream = whrippedBox.isChecked();
 
+        int price = calculatePrice(quantity);
         display(quantity);
-        displayPrice(quantity * 5);
+        displayPrice(price);
+
+        displayMessage("Price :" +price,"\nQuntity: "+quantity
+        );
 
     }
 
@@ -43,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
+
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice(int quantity) {
+        int price = quantity * 5;
+        return price;
+    }
+
     public void increament(View view) {
 
         quantity = quantity + 1;
@@ -53,5 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
         quantity = quantity - 1;
         display(quantity);
+    }
+
+
+    public String displayMessage(String message,String quantity){
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message+quantity);
+        return message;
     }
 }
